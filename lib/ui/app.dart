@@ -12,7 +12,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: Colors.amberAccent,
       ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(title: 'Flutter playground'),
       routes: <String, WidgetBuilder> {
         '/list': (BuildContext context) => ListPage(title: 'List page test'),
       },
