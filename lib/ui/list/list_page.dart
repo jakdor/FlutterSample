@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1/ui/home/home_list_item.dart';
+import 'package:flutter1/ui/list/list_item.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}): super(key: key);
@@ -30,7 +30,7 @@ class _ListPageState extends State<ListPage>{
         itemCount: _items.length,
         padding: EdgeInsets.all(8.0),
         itemBuilder: (BuildContext context, int index) =>
-            HomeListItem(index: index, model: _items[index]),
+            ListItem(index: index, model: _items[index]),
         separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),
       floatingActionButton: FloatingActionButton(

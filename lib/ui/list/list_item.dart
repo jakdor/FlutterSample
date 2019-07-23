@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-class HomeListItem extends StatelessWidget {
-  HomeListItem({Key key, this.index, this.model}) : super(key: key);
+class ListItem extends StatelessWidget {
+  ListItem({Key key, this.index, this.model}) : super(key: key);
 
   final int index;
   final String model;
