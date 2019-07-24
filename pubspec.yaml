@@ -32,6 +32,7 @@ dev_dependencies:
 
   jaguar_retrofit_gen: 2.8.9
   build_runner: 1.6.2
+  jaguar_serializer_cli: 2.2.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

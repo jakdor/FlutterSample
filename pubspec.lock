@@ -256,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.12"
+  jaguar_serializer_cli:
+    dependency: "direct dev"
+    description:
+      name: jaguar_serializer_cli
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.8"
   js:
     dependency: transitive
     description:
