@@ -1,5 +1,7 @@
 import 'package:jaguar_serializer/jaguar_serializer.dart';
 
+import 'item.dart';
+
 part 'stack_questions.jser.dart';
 
 @GenSerializer()
@@ -7,6 +9,5 @@ class StackQuestionsSerializer extends Serializer<StackQuestions> with _$StackQu
 }
 
 class StackQuestions {
-  //dummy placeholder field
-  List<String> items = ['item1', 'item2', 'item3'];
+  List<Item> items;
 }
