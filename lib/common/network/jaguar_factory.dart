@@ -7,7 +7,7 @@ import 'package:flutter1/common/model/stack_questions/stack_questions.dart';
 class JaguarFactory {
   StackService buildStackService() {
     var repo = JsonRepo()..add(StackQuestionsSerializer());
-    return StackService(route("https://api.stackexchange.com/2.2"))
+    return StackService(route(StackService.baseUrl))
       ..jsonConverter = repo;
   }
 }

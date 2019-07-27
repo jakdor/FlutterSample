@@ -8,6 +8,8 @@ part 'stack_service.jretro.dart';
 class StackService extends ApiClient with _$StackServiceClient {
   final Route base;
 
+  static const String baseUrl = 'https://api.stackexchange.com/2.2';
+
   StackService(this.base);
 
   @GetReq(path: "/questions?order=desc&sort=activity&tagged=Android&site=stackoverflow")
