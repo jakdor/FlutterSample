@@ -25,14 +25,21 @@ dependencies:
   # cupertino_icons: 0.1.2
   rxdart: 0.22.1
   jaguar_retrofit: 2.8.6
+  inject:
+    path: ./inject/inject.dart/package/inject
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  jaguar_retrofit_gen: 2.8.9
   build_runner: 1.6.2
+  jaguar_retrofit_gen: 2.8.9
   jaguar_serializer_cli: 2.2.8
+  inject_generator:
+    path: ./inject/inject.dart/package/inject_generator
+
+dependency_overrides:
+  analyzer: ^0.36.0 #jaguar_serializer_cli clash with inject_generator
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
