@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter1/common/bloc/stack_questions_bloc.dart';
 import 'package:flutter1/ui/list/list_item.dart';
 
 class ListPage extends StatefulWidget {
-  ListPage({Key key, this.title}): super(key: key);
+  ListPage(this.stackQuestionsBloc, {Key key, this.title}): super(key: key);
 
+  final StackQuestionsBloc stackQuestionsBloc;
   final String title;
 
   @override
