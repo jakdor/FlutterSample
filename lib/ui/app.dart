@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:inject/inject.dart';
 
 import 'home/home_page.dart';
 import 'list/list_page.dart';
 
+@provide
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
