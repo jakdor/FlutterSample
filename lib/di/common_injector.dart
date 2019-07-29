@@ -1,3 +1,4 @@
+import 'package:flutter1/common/bloc/stack_questions_bloc.dart';
 import 'package:inject/inject.dart';
 
 import 'common_module.dart';
@@ -11,4 +12,8 @@ abstract class CommonInjector {
   App get app;
 
   static final create = g.CommonInjector$Injector.create;
+
+  //Dynamic injectors
+  @provide
+  StackQuestionsBloc get stackQuestionsBloc;
 }

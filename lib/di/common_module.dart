@@ -10,9 +10,15 @@ class CommonModule {
 
   @provide
   @singleton
-  StackService stackService() => JaguarFactory().buildStackService();
+  JaguarFactory jaguarFactory() => JaguarFactory();
 
   @provide
+  @singleton
+  StackService stackService(JaguarFactory jaguarFactory) =>
+      jaguarFactory.buildStackService();
+
+  @provide
+  @singleton
   StackQuestionsRepository stackQuestionsRepository(StackService stackService) =>
       StackQuestionsRepository(stackService);
 

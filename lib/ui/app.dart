@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter1/common/bloc/stack_questions_bloc.dart';
+import 'package:flutter1/di/common_injector.dart';
 import 'package:inject/inject.dart';
 
 import 'home/home_page.dart';
 import 'list/list_page.dart';
 
+@provide
 class App extends StatelessWidget {
 
-  //TODO find way to create bloc only on navigation
-  final StackQuestionsBloc stackQuestionsBloc;
-
-  @provide
-  const App(this.stackQuestionsBloc) : super();
+  CommonInjector commonInjector;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +20,8 @@ class App extends StatelessWidget {
       ),
       home: HomePage(title: 'Flutter playground'),
       routes: <String, WidgetBuilder> {
-        '/list': (BuildContext context) => ListPage(
-            stackQuestionsBloc, title: 'List page test'),
+        '/list': (BuildContext context) =>
+            ListPage(commonInjector.stackQuestionsBloc, title: 'List page test'),
       },
     );
   }

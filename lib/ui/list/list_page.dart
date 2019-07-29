@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/common/bloc/stack_questions_bloc.dart';
+import 'package:flutter1/common/model/stack_questions/stack_questions.dart';
+import 'package:flutter1/common/rx/rx_response.dart';
+import 'package:flutter1/common/rx/rx_status.dart';
 import 'package:flutter1/ui/list/list_item.dart';
 
 class ListPage extends StatefulWidget {
@@ -14,12 +17,14 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage>{
 
-  List<String> _items = ['item1', 'item2', 'item3'];
+  @override
+  void initState() {
+    super.initState();
+    widget.stackQuestionsBloc.requestStackQuestions(false);
+  }
 
-  void _addNewItem(){
-    setState(() {
-      _items.add('item' + (_items.length + 1).toString());
-    });
+  Future<void> _refreshStackQuestions() async {
+    widget.stackQuestionsBloc.requestStackQuestions(true);
   }
 
   @override
@@ -28,17 +33,29 @@ class _ListPageState extends State<ListPage>{
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.separated(
-        itemCount: _items.length,
-        padding: EdgeInsets.all(8.0),
-        itemBuilder: (BuildContext context, int index) =>
-            ListItem(index: index, model: _items[index]),
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addNewItem,
-        child: Icon(Icons.add_shopping_cart),
+      body: RefreshIndicator(
+        child: StreamBuilder(
+          stream: widget.stackQuestionsBloc.questionStream,
+            builder: (context, AsyncSnapshot<RxResponse<StackQuestions>> snapshot) {
+              if (snapshot.hasData && snapshot.data.status == RxStatus.SUCCESS) {
+                return _listViewBuilder(snapshot.data.data);
+              } else if (snapshot.hasError || snapshot.data.status == RxStatus.ERROR) {
+                return Text(snapshot.error.toString());
+              }
+              return Center(child: CircularProgressIndicator());
+            }),
+        onRefresh: _refreshStackQuestions,
       ),
     );
+  }
+
+  Widget _listViewBuilder(StackQuestions response){
+    return ListView.separated(
+        itemCount: response.items.length,
+        padding: EdgeInsets.all(8.0),
+        itemBuilder: (BuildContext context, int index) =>
+            ListItem(index: index, model: response.items[index]),
+        separatorBuilder: (BuildContext context,
+            int index) => const Divider());
   }
 }

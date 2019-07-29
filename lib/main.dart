@@ -5,5 +5,7 @@ import 'package:flutter1/di/common_injector.dart';
 
 void main() async {
   var container = await CommonInjector.create(CommonModule());
-  runApp(container.app);
+  var app = container.app;
+  app.commonInjector = container;
+  runApp(app);
 }
