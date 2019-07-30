@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(16.0),
               child: RaisedButton(
                 child: Text(
-                  'BLoC/arch test - network fetched list',
+                  'Network fetched list + local RAM cache',
                 ),
                 onPressed: (){
                   Navigator.pushNamed(context, '/list');

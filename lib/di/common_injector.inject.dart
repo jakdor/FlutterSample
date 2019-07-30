@@ -6,6 +6,7 @@ import '../common/repository/stack_questions_repository.dart' as _i5;
 import 'dart:async' as _i6;
 import '../ui/app.dart' as _i7;
 import '../common/bloc/stack_questions_bloc.dart' as _i8;
+import '../common/network/rest_io_client.dart' as _i9;
 
 class CommonInjector$Injector implements _i1.CommonInjector {
   CommonInjector$Injector._(this._commonModule);
@@ -33,8 +34,9 @@ class CommonInjector$Injector implements _i1.CommonInjector {
           _commonModule.stackQuestionsRepository(_createStackService());
   _i4.StackService _createStackService() => _singletonStackService ??=
       _commonModule.stackService(_createJaguarFactory());
-  _i3.JaguarFactory _createJaguarFactory() =>
-      _singletonJaguarFactory ??= _commonModule.jaguarFactory();
+  _i3.JaguarFactory _createJaguarFactory() => _singletonJaguarFactory ??=
+      _commonModule.jaguarFactory(_createRestIOClient());
+  _i9.RestIOClient _createRestIOClient() => _commonModule.restIoClient();
   @override
   _i7.App get app => _createApp();
   @override

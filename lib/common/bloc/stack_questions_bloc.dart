@@ -10,15 +10,16 @@ import 'package:flutter1/common/repository/stack_questions_repository.dart';
 class StackQuestionsBloc extends BaseBloc {
 
   final StackQuestionsRepository _stackQuestionsRepository;
-  final _questionSubject = PublishSubject<RxResponse<StackQuestions>>();
+  final _questionSubject = BehaviorSubject<RxResponse<StackQuestions>>();
 
   Observable<RxResponse<StackQuestions>> get questionStream => _questionSubject.stream;
 
   StackQuestionsBloc(this._stackQuestionsRepository) {
-    _stackQuestionsRepository.questionsListStatusSubject.stream.listen(
+    compositeSubscription.add(
+        _stackQuestionsRepository.questionsListStatusSubject.stream.listen(
         _handleNewStackQuestionStatus,
         onError: (e) => _questionSubject.sink.add(
-            RxResponseBuilder<StackQuestions>().error(e)));
+            RxResponseBuilder<StackQuestions>().error(e))));
   }
 
   void _handleNewStackQuestionStatus(RepositoryRequestStatus status){
@@ -51,6 +52,7 @@ class StackQuestionsBloc extends BaseBloc {
 
   @override
   void dispose() {
+    super.dispose();
     _questionSubject.close();
   }
 }

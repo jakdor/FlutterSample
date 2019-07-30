@@ -8,7 +8,7 @@ import 'package:flutter1/common/model/stack_questions/stack_questions.dart';
 class StackQuestionsRepository {
 
   final StackService stackService;
-  final questionsListStatusSubject = BehaviorSubject<RepositoryRequestStatus>();
+  final questionsListStatusSubject = PublishSubject<RepositoryRequestStatus>();
 
   StackQuestions lastStackQuestions;
 

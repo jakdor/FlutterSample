@@ -39,8 +39,8 @@ class _ListPageState extends State<ListPage>{
             builder: (context, AsyncSnapshot<RxResponse<StackQuestions>> snapshot) {
               if (snapshot.hasData && snapshot.data.status == RxStatus.SUCCESS) {
                 return _listViewBuilder(snapshot.data.data);
-              } else if (snapshot.hasError || snapshot.data.status == RxStatus.ERROR) {
-                return Text(snapshot.error.toString());
+              } else if (snapshot.hasError || snapshot.data?.status == RxStatus.ERROR) {
+                return _fetchErrorMsg(snapshot.error);
               }
               return Center(child: CircularProgressIndicator());
             }),
@@ -57,5 +57,25 @@ class _ListPageState extends State<ListPage>{
             ListItem(index: index, model: response.items[index]),
         separatorBuilder: (BuildContext context,
             int index) => const Divider());
+  }
+
+  Widget _fetchErrorMsg(Exception e) {
+    return Column(children: <Widget>[
+      Padding(
+        padding: EdgeInsets.all(12.0),
+        child:
+        Card(
+          child:
+          Text("Unable to fetch: " + e.toString()),
+        ),
+      ),
+    ],
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.stackQuestionsBloc.dispose();
   }
 }
