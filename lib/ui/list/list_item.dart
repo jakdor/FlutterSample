@@ -27,7 +27,7 @@ class ListItem extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 child: FadeInImage.assetNetwork(
                     placeholder: 'assets/img/ic_stackoverflow.png',
-                    image: model.owner.profileImageUrl),
+                    image: model.owner.profileImageUrl ?? ''),
               )
             ),
             Expanded(
