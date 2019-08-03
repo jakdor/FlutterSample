@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter1/di/common_injector.dart';
 import 'package:inject/inject.dart';
+import 'package:flutter/rendering.dart';
 
 import 'home/home_page.dart';
 import 'list/list_page.dart';
@@ -12,6 +13,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPaintSizeEnabled = false;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

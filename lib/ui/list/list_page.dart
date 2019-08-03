@@ -52,7 +52,7 @@ class _ListPageState extends State<ListPage>{
   Widget _listViewBuilder(StackQuestions response){
     return ListView.separated(
         itemCount: response.items.length,
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
         itemBuilder: (BuildContext context, int index) =>
             ListItem(index: index, model: response.items[index]),
         separatorBuilder: (BuildContext context,

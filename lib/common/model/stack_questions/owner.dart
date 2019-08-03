@@ -9,4 +9,6 @@ class OwnerSerializer extends Serializer<Owner> with _$OwnerSerializer {
 class Owner {
   @Alias("profile_image")
   String profileImageUrl;
+  @Alias("display_name")
+  String displayName;
 }

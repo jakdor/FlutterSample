@@ -25,6 +25,7 @@ dependencies:
   # cupertino_icons: 0.1.2
   rxdart: 0.22.1
   jaguar_retrofit: 2.8.6
+  auto_size_text: 2.0.2+1
   inject:
     path: ./inject/inject.dart/package/inject
 
@@ -53,8 +54,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+  assets:
+    - assets/img/ic_stackoverflow.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
