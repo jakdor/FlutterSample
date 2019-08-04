@@ -17,22 +17,23 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage>{
 
+  bool _activeSearchBar;
+
   @override
   void initState() {
     super.initState();
-    widget.stackQuestionsBloc.requestStackQuestions(false);
+    _activeSearchBar = false;
+    widget.stackQuestionsBloc.requestStackQuestions(forceUpdate: false);
   }
 
   Future<void> _refreshStackQuestions() async {
-    widget.stackQuestionsBloc.requestStackQuestions(true);
+    widget.stackQuestionsBloc.requestStackQuestions(forceUpdate: true);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: _appBar(),
       body: RefreshIndicator(
         child: StreamBuilder(
           stream: widget.stackQuestionsBloc.questionStream,
@@ -46,6 +47,40 @@ class _ListPageState extends State<ListPage>{
             }),
         onRefresh: _refreshStackQuestions,
       ),
+    );
+  }
+
+  Widget _appBar() {
+    return !_activeSearchBar ?
+    AppBar(
+      title: Text(widget.stackQuestionsBloc.lastSearch() != null
+          ? "Tag: " + widget.stackQuestionsBloc.lastSearch()
+          : widget.title),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () => setState(() => _activeSearchBar = true),
+        ),
+      ],
+    ) : AppBar(
+      leading: Icon(Icons.search),
+      title: TextFormField(
+          initialValue: widget.stackQuestionsBloc.lastSearch(),
+          decoration: InputDecoration(
+            hintText: "Search stack question topic",
+          ),
+          autofocus: true,
+          onFieldSubmitted: (input) {
+            widget.stackQuestionsBloc.requestStackQuestions(
+                search: input, forceUpdate: true);
+            setState(() => _activeSearchBar = false);
+          }),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.close),
+          onPressed: () => setState(() => _activeSearchBar = false),
+        ),
+      ],
     );
   }
 
@@ -63,10 +98,10 @@ class _ListPageState extends State<ListPage>{
     return Column(children: <Widget>[
       Padding(
         padding: EdgeInsets.all(12.0),
-        child:
-        Card(
-          child:
-          Text("Unable to fetch: " + e.toString()),
+        child: Expanded(
+          child: Card(
+            child: Text("Unable to fetch: " + e.toString()),
+          ),
         ),
       ),
     ],

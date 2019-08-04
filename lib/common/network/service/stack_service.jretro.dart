@@ -8,9 +8,15 @@ part of 'stack_service.dart';
 
 abstract class _$StackServiceClient implements ApiClient {
   final String basePath = "";
-  Future<StackQuestions> getStackQuestions() async {
-    var req = base.get.path(basePath).path(
-        "/questions?order=desc&sort=activity&tagged=Android&site=stackoverflow");
+  Future<StackQuestions> getStackQuestions(
+      String order, String sort, String site, String tagged) async {
+    var req = base.get
+        .path(basePath)
+        .path("/questions")
+        .query("order", order)
+        .query("sort", sort)
+        .query("site", site)
+        .query("tagged", tagged);
     return req.go(throwOnErr: true).map(decodeOne);
   }
 }

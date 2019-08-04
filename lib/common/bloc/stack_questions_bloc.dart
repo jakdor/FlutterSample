@@ -14,6 +14,8 @@ class StackQuestionsBloc extends BaseBloc {
 
   Observable<RxResponse<StackQuestions>> get questionStream => _questionSubject.stream;
 
+  String lastSearch() => _stackQuestionsRepository.lastSearch;
+
   StackQuestionsBloc(this._stackQuestionsRepository) {
     compositeSubscription.add(
         _stackQuestionsRepository.questionsListStatusSubject.stream.listen(
@@ -40,13 +42,15 @@ class StackQuestionsBloc extends BaseBloc {
     }
   }
 
-  void requestStackQuestions([bool forceUpdate = false]){
+  void requestStackQuestions({String search, bool forceUpdate = false}){
     if(!forceUpdate && _stackQuestionsRepository.lastStackQuestions != null){
       _questionSubject.sink.add(RxResponseBuilder<StackQuestions>().success(
           _stackQuestionsRepository.lastStackQuestions));
     }
     else {
-      _stackQuestionsRepository.getStackQuestionsList();
+      _stackQuestionsRepository.getStackQuestionsList(search
+          ?? _stackQuestionsRepository.lastSearch
+          ?? "Flutter");
     }
   }
 

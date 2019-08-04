@@ -12,6 +12,10 @@ class StackService extends ApiClient with _$StackServiceClient {
 
   StackService(this.base);
 
-  @GetReq(path: "/questions?order=desc&sort=activity&tagged=Android&site=stackoverflow")
-  Future<StackQuestions> getStackQuestions();
+  @GetReq(path: "/questions")
+  Future<StackQuestions> getStackQuestions(
+      @QueryParam() String order,
+      @QueryParam() String sort,
+      @QueryParam() String site,
+      @QueryParam() String tagged);
 }

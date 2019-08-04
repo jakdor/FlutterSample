@@ -11,15 +11,18 @@ class StackQuestionsRepository {
   final questionsListStatusSubject = PublishSubject<RepositoryRequestStatus>();
 
   StackQuestions lastStackQuestions;
+  String lastSearch;
 
   @provide
   StackQuestionsRepository(this.stackService);
 
-  void getStackQuestionsList() {
+  void getStackQuestionsList(String search) {
     questionsListStatusSubject.sink.add(RepositoryRequestStatus.PENDING);
 
-    stackService.getStackQuestions().then(
-            (value) {
+    lastSearch = search;
+
+    stackService.getStackQuestions("desc", "activity", "stackoverflow", search)
+        .then((value) {
               lastStackQuestions = value;
               questionsListStatusSubject.sink.add(RepositoryRequestStatus.OK);
             }, onError: (e) =>
