@@ -6,5 +6,5 @@ class RxResponse<T> {
   final Exception exception;
   final RxStatus status;
 
-  RxResponse(this.status, {this.data = null, this.exception = null});
+  RxResponse(this.status, {this.data, this.exception});
 }
