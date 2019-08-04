@@ -1,16 +1,23 @@
-# flutter1
+# FlutterSample(s)
 
-A new Flutter project.
+Place for testing new ideas and patterns in Flutter, maybe you will find it useful :)
 
-## Getting Started
+## Samples:
 
-This project is a starting point for a Flutter application.
+- BLoC architecture pattern on rx.dart,
+- DI on Google inject.dart (in dev lib similar to Dagger2),
+- Network fetched ListView with local RAM cache (Stackoverflow API v2.2)
 
-A few resources to get you started if this is your first Flutter project:
+## Code generation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+First run: (local build_runner cache doesn't know about commited generated files)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub run build_runner build --delete-conflicting-outputs
+./gen.sh
+```
+
+Next runs:
+```
+./gen.sh
+```
