@@ -38,7 +38,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.jakdor.test.fluttersamples"
+        applicationId "com.jakdor.fluttersamples"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
