@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-                'My Flutter tests/samples:',
+                'Flutter tests/samples:',
             ),
             Padding(
               padding: EdgeInsets.all(16.0),

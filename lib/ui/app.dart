@@ -15,12 +15,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPaintSizeEnabled = false;
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter samples',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         accentColor: Colors.amberAccent,
       ),
-      home: HomePage(title: 'Flutter playground'),
+      home: HomePage(title: 'Flutter samples'),
       routes: <String, WidgetBuilder> {
         '/list': (BuildContext context) =>
             ListPage(commonInjector.stackQuestionsBloc, title: 'List page test'),
