@@ -8,6 +8,15 @@ Place for testing new ideas and patterns in Flutter, maybe you will find it usef
 - DI on inject.dart (internally used by Google similar to Dagger2),
 - Network fetched ListView with local RAM cache (Stackoverflow API v2.2)
 
+## Before first run
+
+Remember to init inject.dart submodule
+
+```
+git submodule init
+git submodule update
+```
+
 ## Code generation
 
 First run: (local build_runner cache doesn't know about committed generated files)
